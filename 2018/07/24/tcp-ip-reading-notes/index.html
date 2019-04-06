@@ -1,0 +1,210 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="TCP/IP 读书笔记"><meta name="keywords" content><meta name="author" content="rexmolo"><meta name="copyright" content="rexmolo"><title>TCP/IP 读书笔记 | rexmolo の Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链路层"><span class="toc-number">2.</span> <span class="toc-text">链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#以太网和IEEE-802封装"><span class="toc-number">2.0.1.</span> <span class="toc-text">以太网和IEEE 802封装</span></a></li></ol></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#IP：网际协议"><span class="toc-number">3.</span> <span class="toc-text">IP：网际协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ARP：地址解析协议"><span class="toc-number">3.1.</span> <span class="toc-text">ARP：地址解析协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RARP：逆地址解析协议"><span class="toc-number">3.2.</span> <span class="toc-text">RARP：逆地址解析协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ICMP-Internet-控制报文协议"><span class="toc-number">3.3.</span> <span class="toc-text">ICMP:Internet 控制报文协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Traceroute-程序"><span class="toc-number">3.4.</span> <span class="toc-text">Traceroute 程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IP选路"><span class="toc-number">3.5.</span> <span class="toc-text">IP选路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态路由协议"><span class="toc-number">3.6.</span> <span class="toc-text">动态路由协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UDP-用户数据协议"><span class="toc-number">3.7.</span> <span class="toc-text">UDP:用户数据协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#广播和多播"><span class="toc-number">3.8.</span> <span class="toc-text">广播和多播</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP链接的建立与终止"><span class="toc-number">3.9.</span> <span class="toc-text">TCP链接的建立与终止</span></a></li></ol></li></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://avatars1.githubusercontent.com/u/9864232?s=460&amp;v=4"></div><div class="author-info__name text-center">rexmolo</div><div class="author-info__description text-center">技术日志</div><div class="follow-button"><a href="https://github.com/rexmolo">Follow Me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">4</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">6</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">3</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">rexmolo の Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/about">About</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">TCP/IP 读书笔记</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-07-24</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>TCP/IP 分四层：链路层、网络层、运输层、应用层</li>
+<li>传输协议：TCP (传输控制协议)、UDP（用户数据报协议）</li>
+<li>各类IP地址范围</li>
+</ul>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.0.0 - <code>127</code>.255.255.255</td>
+</tr>
+<tr>
+<td>B</td>
+<td><code>128</code>.0.0 - <code>191</code>.255.255.255</td>
+</tr>
+<tr>
+<td>C</td>
+<td><code>192</code>.0.0 - <code>223</code>.255.255.255</td>
+</tr>
+<tr>
+<td>D</td>
+<td><code>224</code>.0.0 - <code>239</code>.255.255.255</td>
+</tr>
+<tr>
+<td>E</td>
+<td><code>240</code>.0.0 - <code>247</code>.255.255.255</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>TCP和UDP采用<code>16bit</code>端口号识别应用程序</li>
+<li>知名 TCP/IP 端口<code>1~1023</code>之间：FTP(21)、Telnet(23)</li>
+<li>多数 TCP/IP 临时端口分配 <code>1024-5000</code>之间</li>
+<li>Unix下<code>/etc/services</code>包含了熟知的端口号</li>
+<li>网络层（IP）提供点到点的服务，运输层（TCP/UDP）提供端到端的服务</li>
+<li>使用 TCP/IP 协议的应用程序通常采用两种应用编程接口（API）：socket 和 TLI（运输层接口：Transport Layer Interface）。前者有时称作 “Berkeley socket”</li>
+</ul>
+<h3 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h3><h5 id="以太网和IEEE-802封装"><a href="#以太网和IEEE-802封装" class="headerlink" title="以太网和IEEE 802封装"></a>以太网和IEEE 802封装</h5><ul>
+<li>链路层三个目的</li>
+</ul>
+<ol>
+<li>为 IP 模块发送和接收 IP 数据报</li>
+<li>为 ARP 模块发送 ARP 请求和接收 ARP 应答</li>
+<li>为 RARP 发送 RARP 请求和接收 RARP 应答</li>
+</ol>
+<ul>
+<li>当今 TCP/IP 采用的主要局域网技术为 以太网，采用一种称作 CSMA/CD 的媒体介入方法</li>
+<li>802.3针对整个 CSMA/CD 网络、802.4针对令牌总线网络、802.5针对令牌环网络</li>
+</ul>
+<h3 id="IP：网际协议"><a href="#IP：网际协议" class="headerlink" title="IP：网际协议"></a>IP：网际协议</h3><p>不可靠：不保证 IP 数据报能成功到达目的地。错误处理算法：丢弃该数据报之后发送 ICMP 消息给信源端</p>
+<p>无连接：IP不维护任何关于后续数据报的状态信息。</p>
+<p><code>TTL</code>（time-to-live）生存时间字段设置了数据报可以经过的最多路由器数。通常由源主机设置（通常为32或64),经过一个路由，值减1，为0时，数据报呗丢弃，并发送<code>ICMP</code>报文通知源主机</p>
+<p>IP首部始终是32 bit 的整数倍</p>
+<ul>
+<li>为一个网络指定一个路由器，而不必为每个主机指定一个路由器，这是IP路由选择机制的另一个基本特性</li>
+<li>子网寻址，A类、B类分配容纳主机数为2的24次方-2和2的16次方-2</li>
+<li>点对点链接始终会带来问题，因为它一般在两端都需要IP地址</li>
+</ul>
+<h4 id="ARP：地址解析协议"><a href="#ARP：地址解析协议" class="headerlink" title="ARP：地址解析协议"></a>ARP：地址解析协议</h4><ul>
+<li><code>ARP</code> 为 IP 地址到对应的硬件地址之间提供动态映射。</li>
+<li>在 ARP 背后有一个基本概念，那就是网络接口有一个硬件地址（一个48 bit的值，标识不同的以太网或令牌环网络接口）。</li>
+<li>ARP 的功能是在32 bit的IP地址和采用不同网络技术的硬件地址之间提供动态映射。</li>
+<li>ARP 高效运行的关键是由于每个主机上都有一个 ARP 高速缓存,存放了最近 Internet 地址到硬件地址之间的映射记录,每一项的生存时间一般为20分钟</li>
+<li>ARP 请求或应答来说，帧类型的值为<code>0x0806</code></li>
+<li>操作字段指出四种操作类型，它们是 ARP 请求（值为1）、ARP 应答（值为2）、RARP 请求（值为3）和 RARP 应答（值为4）</li>
+<li>由于 ARP 请求或回答的数据帧长都是42字节（28字节的ARP数据，14字节的以太网帧头,因此，每一帧都必须加入填充字符以达到以太网的最小长度要求：60字节。</li>
+<li>大多数的 BSD 实现把完成 TCP 连接请求的时间限制设置为75秒</li>
+</ul>
+<h4 id="RARP：逆地址解析协议"><a href="#RARP：逆地址解析协议" class="headerlink" title="RARP：逆地址解析协议"></a>RARP：逆地址解析协议</h4><ul>
+<li>RARP 协议是许多无盘系统在引导时用来获取 IP 地址的</li>
+<li>RARP 请求或应答的帧类型代码为0x8035，而且 RARP 请求的操作代码为3，应答操作代码为4</li>
+<li>RARP 请求以广播方式传送，而 RARP 应答一般是单播(unicast)传送的</li>
+</ul>
+<h4 id="ICMP-Internet-控制报文协议"><a href="#ICMP-Internet-控制报文协议" class="headerlink" title="ICMP:Internet 控制报文协议"></a>ICMP:Internet 控制报文协议</h4><ul>
+<li>ICMP 经常被认为是IP层的一个组成部分。它传递差错报文以及其他需要注意的信息。ICMP 报文通常被IP层或更高层协议（TCP或UDP）使用。一些 ICMP 报文把差错报文返回给用户进程。</li>
+</ul>
+<ul>
+<li>ICMP 报文是在 IP 数据报内部被传输的</li>
+</ul>
+<h4 id="Traceroute-程序"><a href="#Traceroute-程序" class="headerlink" title="Traceroute 程序"></a>Traceroute 程序</h4><ol>
+<li>开发 <code>Traceroute</code> 程序的原因：</li>
+</ol>
+<blockquote>
+<ul>
+<li>在IP首部选项字段中最多只能存放9个IP地址,不能存放当前大多数的路径</li>
+<li>Traceroute 程序只需要目的端运行一个UDP模块—其他不需要任何特殊的服务器应用程序</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li><code>Traceroute</code> 输出</li>
+</ol>
+<blockquote>
+<ul>
+<li>输出的第1个无标号行给出了目的主机名和其IP地址，指出 traceroute 程序最大的TTL字段值为30。40字节的数据报包含20字节IP首部、8字节的 UDP 首部和12字节的用户数据（12字节的用户数据包含每发一个数据报就加1的序列号，送出 TTL 的副本以及发送数据报的时间）</li>
+<li>使用 traceroute 程序的-g选项，可以为宽松的源站选路指明一些中间路由器</li>
+</ul>
+</blockquote>
+<h4 id="IP选路"><a href="#IP选路" class="headerlink" title="IP选路"></a>IP选路</h4><ul>
+<li>IP 执行选路机制，而路由守护程序则一般提供选路策略。</li>
+</ul>
+<p><code>netstat</code></p>
+<blockquote>
+<p>对于一个给定的路由器，可以打印出五种不同的标志（flag）：</p>
+<ol>
+<li><strong>U</strong> 该路由可以使用。</li>
+<li><strong>G</strong> 该路由是到一个网关（路由器）。如果没有设置该标志，说明目的地是直接相连的。</li>
+<li><strong>H</strong> 该路由是到一个主机，也就是说，目的地址是一个完整的主机地址。如果没有设置该标志，说明该路由是到一个网络，而目的地址是一个网络地址：一个网络号，或者网络号与子网号的组合。</li>
+<li><strong>D</strong> 该路由是由重定向报文创建的（9.5节）。</li>
+<li><strong>M</strong> 该路由已被重定向报文修改（9.5节）。</li>
+</ol>
+</blockquote>
+<ul>
+<li>对于点对点链路和环回接口来说，路由是到达主机（例如，设置H标志）。对于广播接口来说，如以太网，路由是到达网络。</li>
+<li>路由表项的内容：</li>
+</ul>
+<blockquote>
+<ol>
+<li>5bit标志、</li>
+<li>目的IP地址（主机、网络或默认）、</li>
+<li>下一站路由器的IP地址（间接路由）或者本地接口的IP地址（直接路由）及指向本地接口的指针</li>
+</ol>
+</blockquote>
+<h4 id="动态路由协议"><a href="#动态路由协议" class="headerlink" title="动态路由协议"></a>动态路由协议</h4><p>名词解释</p>
+<blockquote>
+<p><code>IGP</code> （Interior Gateway Protocol） 内部网关协议 或者叫 域内选路协议</p>
+<p><code>OSPF</code>（Open Shortest Path First） 开放最短路径优先</p>
+<p><code>EGP</code> (Exterier Gateway Protocol) 外部网关协议</p>
+<p><code>HELLO</code> 1986年在原来NSFNET骨干网上使用的较早的IGP协议</p>
+</blockquote>
+<ul>
+<li>选路信息协议 （RIP）—最常用</li>
+<li>Internet 是以一组自治系统(AS，Autonomous System)的方式组织的，每个自治系统通常由单个实体管理</li>
+<li>常常将一个公司或大学校园定义为一个自治系统。</li>
+<li>每个自治系统可以选择该自治系统中各个路由器之间的选路协议。这种协议我们称之为内部网关协议IGP（Interior Gateway Protocol）或域内选路协议（intradomain routing protocol）</li>
+<li>Unix 系统上常常运行名为 routed 路由守护程序</li>
+</ul>
+<h4 id="UDP-用户数据协议"><a href="#UDP-用户数据协议" class="headerlink" title="UDP:用户数据协议"></a>UDP:用户数据协议</h4><ul>
+<li>UDP 不提供可靠性：它把应用程序传给 IP层 的数据发送出去，但是并不保证它们能到达目的地</li>
+<li>UDP 检验和覆盖 UDP 首部和 UDP 数据</li>
+<li>UDP 检验和（事实上，TCP/IP协议簇中所有的检验和）是简单的16 bit和</li>
+<li>客户程序使用ephemeral端口号一般在1024～5000之间</li>
+<li>尽管IP分片过程看起来是透明的，但有一点让人不想使用它：即使只丢失一片数据也要重传整个数据报，因为 IP 层本身没有超时重传的机制</li>
+<li>TCP 有超时和重传机制，但 UDP 没有。一些 UDP 应用程序本身也执行超时和重传</li>
+<li>IP 数据报是指 IP 层端到端的传输单元（在分片之前和重新组装之后）</li>
+<li>分组是指在 IP 层和链路层之间传送的数据单元。一个分组可以是一个完整的IP数据报，也可以是 IP 数据报的一个分片</li>
+<li>理论上，IP 数据报的最大长度是65535字节，这是由 IP 首部16比特总长度字段所限制的</li>
+<li>去除20字节的IP首部和8个字节的 UDP 首部，UDP 数据报中用户数据的最长长度为65507字节</li>
+</ul>
+<h4 id="广播和多播"><a href="#广播和多播" class="headerlink" title="广播和多播"></a>广播和多播</h4><ul>
+<li>广播和多播仅应用于 UDP</li>
+<li>对于以太网，当地址中最高字节的最低位设置为1时表示该地址是一个多播地址，用十六进制可表示为01:00:00:00:00:00（以太网广播地址ff:ff:ff:ff:ff:ff可看作是以太网多播地址的特例）</li>
+<li>D类IP地址被称为多播组地址</li>
+</ul>
+<h4 id="TCP链接的建立与终止"><a href="#TCP链接的建立与终止" class="headerlink" title="TCP链接的建立与终止"></a>TCP链接的建立与终止</h4><table>
+<thead>
+<tr>
+<th>标志</th>
+<th>3字符缩写</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>SYN</td>
+<td>同步序号</td>
+</tr>
+<tr>
+<td>F</td>
+<td>FIN</td>
+<td>发送方完成数据发送</td>
+</tr>
+<tr>
+<td>R</td>
+<td>RST</td>
+<td>复位链接</td>
+</tr>
+<tr>
+<td>P</td>
+<td>PSH</td>
+<td>尽可能快的将数据送往接收进程</td>
+</tr>
+<tr>
+<td>.</td>
+<td></td>
+<td>以上四个标志比特均置为0</td>
+</tr>
+</tbody>
+</table>
+<p>未完待续… …</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">rexmolo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://rexmolo.github.io/2018/07/24/tcp-ip-reading-notes/">http://rexmolo.github.io/2018/07/24/tcp-ip-reading-notes/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/04/06/install-or-upgrade-amqp-for-docker/"><i class="fa fa-chevron-left">  </i><span>rabbitmq中消费进程无法启动，PHP的amqp升级</span></a></div><div class="next-post pull-right"><a href="/2018/07/24/how-to-make-a-shell/"><span>开发 Shell 命令</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2019 By rexmolo</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script></body></html>
