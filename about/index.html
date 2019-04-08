@@ -26,17 +26,52 @@
 <li>期望城市：上海</li>
 </ul>
 <hr>
-<h1 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h1><p>待更新</p>
-<hr>
-<h1 id="开源项目和作品"><a href="#开源项目和作品" class="headerlink" title="开源项目和作品"></a>开源项目和作品</h1><h1 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a>技能清单</h1><p>以下均为我熟练使用的技能</p>
+<h1 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h1><h2 id="上海商派网络科技有限公司-（2017-5-至今）"><a href="#上海商派网络科技有限公司-（2017-5-至今）" class="headerlink" title="上海商派网络科技有限公司 （2017.5 - 至今）"></a>上海商派网络科技有限公司 （2017.5 - 至今）</h2><h3 id="vans-B2C-商城-BBC商城"><a href="#vans-B2C-商城-BBC商城" class="headerlink" title="vans B2C 商城 BBC商城"></a>vans B2C 商城 BBC商城</h3><ul>
+<li>参与微分销、商城优惠券、预约活动、员工内购、售后流程改造、滑板学校（包含后台场地、课程创建以及excel导入、审核报名发送微信模板消息、前端涉及用户报名、教练签到等）等模块开发</li>
+<li>项目开发中本着对代码结构的扩展性、复用性等原则，不断重构原有的代码。</li>
+<li>在微信模板发送消息中，重构原有结构引入 <code>RabbitMQ</code> 解耦处理，后续微信模板发送消息。只需增加不同生产者和消费者，无需更改中间逻辑，更灵活，逻辑更清晰。</li>
+<li>开发滑板学校功能中在后台引入 <code>vue.js</code> 开发，掌握了 <code>vue.js</code> 的语法，组件开发。</li>
+</ul>
+<h3 id="TCL家电维修派单系统"><a href="#TCL家电维修派单系统" class="headerlink" title="TCL家电维修派单系统"></a>TCL家电维修派单系统</h3><p>框架使用：<code>laravel</code> + 公司自研 LuBan 包</p>
 <ul>
-<li>Web开发：PHP/Javascript</li>
-<li>Web框架：Laravel/CodeIgniter</li>
-<li>前端框架：vue.js</li>
-<li>数据库相关：MySQL/redis</li>
-<li>版本管理、文档和自动化部署工具：Svn/Git/Composer</li>
-<li>单元测试：PHPUnit</li>
-<li>云和开放平台：微信应用开发</li>
+<li>负责SSO单点登录系统(使用了 <code>laravel guard</code> )整合、对单点登录系统有了一个更清晰的认识。</li>
+<li>本次项目开发中，学习并使用了<code>laravel guard</code>，PHP 的 <code>Traits</code> 等一些特性</li>
+</ul>
+<h3 id="积分商城系统"><a href="#积分商城系统" class="headerlink" title="积分商城系统"></a>积分商城系统</h3><ul>
+<li>基于公司自有框架 BBC，与京东合作，该系统开发完成之后，将交付于 30 多家大型企业上线使用，系统中集成京东的 API 接口，整个项目包括：用户端、商户管理系统、平台管理系统。</li>
+<li>在项目中负责：商品信息管理、商户管理系统操作日志记录、商品售后服务、会员中心等模块的业务功能开发。</li>
+<li>在开发日志操作记录模块过程中，提出在项目 <code>router</code> 位置将商户端的 <code>router</code> 做成一个 <code>group</code> ，增加 <code>middleware</code> 处理，在 <code>middleware</code> 中拿到相关用户信息、控制器信息之后封装处理写入 <code>redis</code> 队列，利用单独的消费进程去处理写入数据库操作。减少了大量改动原有系统的结构，也保证当前系统的性能 </li>
+</ul>
+<h2 id="杭州万色城电子商务有限公司（2015-10—2017-03）"><a href="#杭州万色城电子商务有限公司（2015-10—2017-03）" class="headerlink" title="杭州万色城电子商务有限公司（2015.10—2017.03）"></a>杭州万色城电子商务有限公司（2015.10—2017.03）</h2><ul>
+<li><a href="www.wsmall.com">万色城</a> 的相关促销活动以及业务功能模块开发设计</li>
+<li>15年商城大改版，包括 <code>PC端</code>、<code>H5</code>、<code>APP</code>，主要负责开发招募会员模块、会员信息模块、团购模块、积分抽奖模块的工作</li>
+<li><a href="px.ewanse.com">万色城商学院</a> 以及 <code>app</code> 客户端接口相关功能开发设计，涉及留言系统改造优化、会员大数据采用 <code>Echart</code> 展示、消息系统建立（涉及前后台功能、<code>app</code> 接口、<code>PC</code> 端）</li>
+<li>公司普罗塔项目开发<code>（APP、H5）</code>负责医生患者方案方面开发以及表设计（包括方案分享、建立推荐关系等）</li>
+<li>16 年新业务体系下微服务模块化，负责开发微服务购物车模块</li>
+</ul>
+<p>开发消息系统时，与需求讨论之后不要求消息实时到达，在开发的时候采用了“推拉结合”模式，即后台系统发送一条消息之后，分两种情况：</p>
+<ol>
+<li>如果后台管理员选定部分用户发送，采用“推模式”，即将该条信息逐条写入消息用户关系对应表 </li>
+<li>如果后台管理员是采用全部用户群发，即采取“拉模式”，即仅将该条信息写入消息主表，当用户登录或者进入到消息列表时，系统从消息主表拉取写入到消息用户关系对应表 </li>
+</ol>
+<h2 id="青岛英网资讯股份有限公司-（2014-05—2015-10）"><a href="#青岛英网资讯股份有限公司-（2014-05—2015-10）" class="headerlink" title="青岛英网资讯股份有限公司 （2014.05—2015.10）"></a>青岛英网资讯股份有限公司 （2014.05—2015.10）</h2><p>项目介绍：小职了属招聘求职类，角色分为个人、HR、企业，该项目主要负责对接个人与企业，HR作为中间角色，利用手中资源可推荐建立给企业，从中获取奖金等 框架使用 <code>CodeIgniter</code></p>
+<ul>
+<li>独立完成了小职了个人版与企业版11个版本的接口，内容涉及：个人简历中心、不同角色奖金计算业务、HR建立投递与企业查看简历之间互动等</li>
+<li>负责HR经理圈功能90%以上的接口开发以及数据表建立</li>
+<li>负责公司内部使用的系统管理平台功能模块开发维护，涉及企业职位审批、奖金发放、简历录入、简历解析等</li>
+<li>企好多APP 接口的开发与维护，负责集成微信支付，客户日常管理模块的开发</li>
+</ul>
+<hr>
+<h1 id="技能阐述"><a href="#技能阐述" class="headerlink" title="技能阐述"></a>技能阐述</h1><ul>
+<li>PHP框架方面可熟练使用 <code>CodeIgniter</code>、<code>Laravel</code>、<code>Lumen</code>、<code>EcStore</code>，对 <code>Laravel</code> 框架的项目结构熟悉，参与过 <code>laravel-china</code> 社区的 <code>Lumen5.5</code> 文档翻译。</li>
+<li>熟悉 <code>php-fpm</code>、 <code>fastCGI</code>、<code>PSR</code> 规范</li>
+<li>在调试 <code>bug</code> 方面，复杂一点的使用 <code>xdebug</code> 追踪。<br>代码方面能够在项目开发中保证代码的扩展性、复用性等。熟悉 APP 的 API 设计，在接口的扩展性、易用性、安全性等方面均有充足的经验。</li>
+<li>了解常见负载均衡、缓存、队列等。可熟练使用 <code>Memcached</code> 和 <code>Redis</code> ，能够在项目中通过缓存解决访问性能、并发、队列等问题。消息机制方面熟练使用 <code>RabbitMQ</code> ，能够在项目中通过 <code>RabbitMQ</code> 解决例如异步分发、一对多、程序解耦等场景。</li>
+<li>个人开发环境使用过 <code>vagrant</code>，目前是 <code>docker-compose</code> 构建，熟悉 <code>Linux</code> 常用命令 <code>shell</code> 脚本 以及 <code>Nginx</code> 常用配置。</li>
+<li>版本管理、自动化部署工具：熟练 <code>Svn/Git/Composer</code> </li>
+<li>熟悉掌握 <code>MySQL</code> 索引原理，了解主从、分库分表，可以设计合理高效的表结构、索引结构。</li>
+<li>了解 <code>Golang</code>, <code>Python</code></li>
+<li>前端方面了解 <code>javascript</code>、<code>jquery</code>、<code>vue</code>、<code>CSS</code>，可在项目开发中解决多数的前端问题</li>
 </ul>
 <hr>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
